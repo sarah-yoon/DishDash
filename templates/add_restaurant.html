@@ -1,0 +1,90 @@
+<!doctype html>
+<head>
+    <title>Add Restaurant with Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <style>
+        .btn {
+            color: black;
+        }
+
+        .item {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        h1, h4 {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Add Restaurant & Menu Items</h1>
+
+        <!-- Add Restaurant -->
+        <form action="/add_restaurant_with_menu" method="POST">
+            <label for="name">Restaurant Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category" class="form-control" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" class="form-control" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control">
+
+            <h4 class="mt-4">Menu Items</h4>
+            <div id="menu-items">
+                <!-- Add Menu Item -->
+                <div class="item">
+                    <label>Item Name</label>
+                    <input type="text" name="menu_items[0][name]" class="form-control" required>
+
+                    <label>Description</label>
+                    <input type="text" name="menu_items[0][description]" class="form-control" required>
+
+                    <label>Price</label>
+                    <input type="number" step="0.01" name="menu_items[0][price]" class="form-control" required>
+
+                    <label>Category</label>
+                    <input type="text" name="menu_items[0][category]" class="form-control">
+                </div>
+            </div>
+
+            <button type="button" class="btn" onclick="addMenuItem()">Add Another Menu Item</button>
+            <button type="submit" class="btn">Add Restaurant with Menu</button>
+        </form>
+    </div>
+
+    <script>
+
+        let itemIndex = 1;
+
+        function addMenuItem() {
+            const menuItemsContainer = document.getElementById('menu-items');
+            const newMenuItem = document.createElement('div');
+            newMenuItem.className = 'item';
+            newMenuItem.innerHTML = `
+                <label>Item Name</label>
+                <input type="text" name="menu_items[${itemIndex}][name]" class="form-control" required>
+
+                <label>Description</label>
+                <input type="text" name="menu_items[${itemIndex}][description]" class="form-control" required>
+
+                <label>Price</label>
+                <input type="number" step="0.01" name="menu_items[${itemIndex}][price]" class="form-control" required>
+
+                <label>Category</label>
+                <input type="text" name="menu_items[${itemIndex}][category]" class="form-control">
+            `;
+            menuItemsContainer.appendChild(newMenuItem);
+            itemIndex++;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+
+<head>
+    <title>{{ restaurant.name }} - Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <style>
+
+        .item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center" style="color: red;">{{ restaurant.name }}</h1>
+
+        <div>
+            <p><strong>Phone:</strong> {{ restaurant.phone_number }}</p>
+            <p><strong>Email:</strong> {{ restaurant.email }}</p>
+            <p><strong>Address:</strong> {{ restaurant.address }}
+                {% if restaurant.address2 %}, {{ restaurant.address2 }}{% endif %}
+                , {{ restaurant.district }}, {{ restaurant.city }}, {{ restaurant.country }} - {{ restaurant.postal_code }}
+            <p><strong>Category:</strong> {{ restaurant.category }}</p>
+        </div>
+
+        <h4 style="color: red;">Menu Items</h4>
+        {% if menu_items %}
+            {% for item in menu_items %}
+            <div class="item">
+                <h5>{{ item.name }}</h5>
+                <p>{{ item.description }}</p>
+                <p><strong>Price:</strong> ${{ item.price }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>No menu items available for this restaurant.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

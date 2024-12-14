@@ -1,0 +1,41 @@
+<!doctype html>
+
+<head>
+    <title>Update Restaurant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <style>
+        .btn {
+            background-color: white;
+            color: rgb(0, 0, 0);
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4" style="color: red;">Update Restaurant</h1>
+
+        <!-- Update Restaurant -->
+        <form action="/update_restaurant" method="POST">
+            <label for="name" class="form-label">Current Restaurant Name</label>
+            <input type="text" id="name" name="name" class="form-control">
+
+            <label for="new_name" class="form-label">New Restaurant Name</label>
+            <input type="text" id="new_name" name="new_name" class="form-control" >
+
+            <label for="category" class="form-label">New Category</label>
+            <input type="text" id="category" name="category" class="form-control">
+
+            <label for="phone" class="form-label">New Phone Number</label>
+            <input type="text" id="phone" name="phone" class="form-control">
+
+            <button type="submit" class="btn" style="color: red;">Update Restaurant</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

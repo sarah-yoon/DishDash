@@ -1,0 +1,71 @@
+<!doctype html>
+<head>
+    <title>Restaurant Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <style>
+        .restaurants {
+            border-bottom: 2px solid #ddd;
+            padding: 20px;
+        }
+
+        .btn {
+            color: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Buttons -->
+        <div>
+            <a href="/add_restaurant_form" class="btn">Add Restaurant</a>
+            <a href="update_restaurant" class="btn">Update Restaurant</a>
+            <button class="btn" onclick="deleteRestaurant()">Delete Restaurant</button>
+            <a href="/export_restaurants" class="btn">Export Restaurants</a>
+        </div>
+
+        <!-- Search -->
+        <form action="/search">
+            <input type="text" name="query" placeholder="Search for a restaurant" class="form-control" required>
+            <button type="submit" class="btn">Search</button>
+        </form>
+
+        <h1 class="text-center" style="color: red;"><b>Dish Dash</b></h1>
+
+        <!-- Restaurant List -->
+        {% for restaurant in restaurants %}
+        <div class="restaurants">
+            <span style="color: red;"><b>{{ restaurant.name }}</b></span>
+            <small>{{ restaurant.category }}</small>
+            <a href="/restaurant/{{ restaurant.restaurant_id }}">View More</a>
+        </div>
+            {% endfor %}
+    </div>
+
+    <script>
+        //displays the prompt to delete a restaurant
+        function deleteRestaurant() {
+            //asks the user to put the name of a restaurant
+            const restaurantDelete = prompt("Put in the name of the restaurant you want to delete.");
+            if (restaurantDelete) {
+                //goes to the backend and requests to delete
+                fetch('/delete_restaurant_by_name', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: restaurantDelete })
+                })
+                .then(response => {
+                    //is the response is successfull it got deleted
+                    if (response.ok) {
+                        alert("Deleted!");
+                        location.reload(); 
+                    //if not, it fails to felete
+                    } else {
+                        alert("Failed to delete.");
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+</html>

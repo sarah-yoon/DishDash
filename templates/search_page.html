@@ -1,0 +1,21 @@
+<div class="container">
+    <h1 class="text-center" style="color: red;">Search Results for "{{ query }}"</h1>
+
+    {% if results %}
+    <div class="row">
+        {% for restaurant in results %}
+        <div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title" style="color: red;">{{ restaurant.name }}</h3>
+                    <p class="card-text"><strong>Category:</strong> {{ restaurant.category }}</p>
+                    <a href="/restaurant/{{ restaurant.restaurant_id }}" class="btn">More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center">No restaurants found for "{{ query }}".</p>
+    {% endif %}
+</div>
